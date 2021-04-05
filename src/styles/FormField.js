@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { InputTextStyles } from './Form.styles';
+import { InputTextStyles } from './FormField.styles';
 
 const Field = ({
     name,
-    type = 'text',
+    type,
     label,
     placeholder,
-    onChange = () => {},
+    onChange,
     defaultValue,
     inputRef,
     ...props
@@ -30,5 +30,20 @@ const Field = ({
         </div>
     </InputTextStyles>
 );
+
+
+Field.propTypes = {
+    name: PropTypes.string,
+    type: PropTypes.string,
+    label: PropTypes.string,
+    placeholder: PropTypes.string,
+    onChange: PropTypes.func,
+};
+
+Field.defaultProps = {
+    type: 'text',
+    onChange: () => {},
+};
+
 
 export default Field;

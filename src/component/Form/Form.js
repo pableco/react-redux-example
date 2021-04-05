@@ -3,8 +3,10 @@ import {useParams } from "react-router-dom";
 import { connect, useSelector } from 'react-redux'
 
 import { updateItem, fetchItem } from '../../redux/actions/apiActions';
-import Button from '../../commonStyles/Buttons.styles';
-import Field from '../../commonStyles/Form';
+import { EditItemPageStyles } from '../../styles/Pages.styles';
+
+import Button from '../../styles/Buttons.styles';
+import Field from '../../styles/FormField';
 
 const Form = ({ loading, updateItem, fetchItem, error, ok }) => {
 
@@ -32,9 +34,13 @@ const Form = ({ loading, updateItem, fetchItem, error, ok }) => {
     }
 
     return (
-        <section>
-            { ( !loading && activeItem ) ?
-                <form onSubmit={requestUpdate}>
+        <EditItemPageStyles>
+            {
+            loading
+            ? <p>LOADING</p>
+            : (
+                activeItem
+                ? <form onSubmit={requestUpdate}>
                     <legend>Edit {activeItem.name}</legend>
                     <img src={activeItem.imageUrl} alt={`${ activeItem.name} card`} />
                     <Field
@@ -53,11 +59,12 @@ const Form = ({ loading, updateItem, fetchItem, error, ok }) => {
                         placeholder="imageUrl" />
                     <Button.Primary name="sumbit">update</Button.Primary>
                 </form>
-            : null }
-            { loading ? <p>Sending data ...</p> : null }
-            { error ? <p>Error: {error}</p> : null }
+                : null
+            )
+            }
+            { error ? <p>ERROR: {error}</p> : null }
             { ok ? <p>Data sent successfully</p> : null }
-        </section>
+        </EditItemPageStyles>
     )
 };
 

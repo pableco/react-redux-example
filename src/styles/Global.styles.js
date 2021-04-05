@@ -88,7 +88,8 @@ const GlobalStyle = createGlobalStyle`
     h3,
     h4,
     h5,
-    h6{
+    h6,
+    legend{
         font-family: ${(props) => props.theme.fontSetTitle};
         padding: 1em 0;
     }
@@ -109,6 +110,7 @@ const GlobalStyle = createGlobalStyle`
     h4,
     legend {
         font-size: ${(props) => props.theme.fontL};
+        font-weight: ${(props) => props.theme.fontBold};
     }
 
     h5 {
