@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 import { deleteItem } from '../../redux/actions/apiActions';
-import Button from '../../commonStyles/Buttons.styles';
+import Button from '../../styles/Buttons.styles';
+import { ItemListStyles, KeypadStyles } from '../../styles/Layouts.styles';
 
 const Item = ({data, deleteItem}) => {
+    const history = useHistory();
+    const handleOnClickEdit = useCallback(() => history.push(`/edit/${data.id}`), [ history, data.id ]);
+
     return (
-        <li id={data.id}>
-            <h5>{data.name}</h5>
+        <ItemListStyles id={data.id}>
+            <h4>{data.name}</h4>
             <img alt={data.name} src={data.imageUrl} />
-            <Link to={`/edit/${data.id}`}>
-                <Button.Invert>
+            <KeypadStyles>
+                <Button.Invert onClick={() => handleOnClickEdit()}>
                     Edit
                 </Button.Invert>
-            </Link>
-            <Button mods={['danger']} onClick={() => deleteItem(data.id)}>
-                Delete
-            </Button>
-        </li>
+                <Button mods={['danger']} onClick={() => deleteItem(data.id)}>
+                    Delete
+                </Button>
+            </KeypadStyles>
+        </ItemListStyles>
     );
 }
 

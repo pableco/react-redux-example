@@ -9,8 +9,8 @@ import { connect } from 'react-redux'
 import { ThemeProvider } from 'styled-components';
 
 import Navigation from "./component/Navigation/Navigation";
-import theme from './commonStyles/theme';
-import GlobalStyle from './commonStyles/Global.styles';
+import theme from './styles/theme';
+import GlobalStyle from './styles/Global.styles';
 
 function App() {
     return (

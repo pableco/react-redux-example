@@ -4,9 +4,13 @@ import { useHistory, useLocation } from "react-router-dom";
 
 import { fetchData } from '../../redux/actions/apiActions';
 import Item from '../Item/Item';
-import Button from '../../commonStyles/Buttons.styles';
-import { ReactComponent as SearchSVG } from '../../commonStyles/icons/search.svg';
-import Field from '../../commonStyles/Form';
+
+import { ListPageStyles } from '../../styles/Pages.styles';
+import { ListStyles, SearchFormStyles } from '../../styles/Layouts.styles';
+
+import Button from '../../styles/Buttons.styles';
+import Field from '../../styles/FormField';
+import { ReactComponent as SearchSVG } from '../../styles/icons/search.svg';
 
 
 // A custom hook that builds on useLocation to parse
@@ -45,8 +49,8 @@ const MessageList = ({ list, loading, fetchData, error}) => {
 
 
     return (
-        <section>
-            <form className="row" onSubmit={requestSearch}>
+        <ListPageStyles>
+            <SearchFormStyles onSubmit={requestSearch}>
                 <Field
                     type="text"
                     onChange={handleInputChange}
@@ -58,17 +62,21 @@ const MessageList = ({ list, loading, fetchData, error}) => {
                 <Button.Action name="sumbit">
                     <SearchSVG />
                 </Button.Action>
-            </form>
-            { loading ? <p>Loading ...</p> : null }
+            </SearchFormStyles>
             { error ? <p>Error: {error}</p> : null }
-            <ul>
+            {
+            loading
+            ? <p>Loading ...</p>
+            : <ListStyles>
                 {
-                    (!loading && list?.length)
-                        ? list.map((item, index) => <Item data={item} key={index} />)
-                        : null
+                    list?.length
+                    ? list.map((item, index) => <Item data={item} key={index} />)
+                    : null
                 }
-            </ul>
-        </section>
+            </ListStyles>
+            }
+
+        </ListPageStyles>
     );
 }
 
