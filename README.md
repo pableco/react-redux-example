@@ -26,8 +26,8 @@ React.js app with redux thunk.
 
 #### TODO
 
-* add lazyload images
-* add styles
+* fix styles
+* add react lazy load
 * change to Sagas
 * loading, error and succees components
 * tracking events
