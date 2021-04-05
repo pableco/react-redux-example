@@ -259,8 +259,8 @@ const images = {
 
 const base = {
 
-    round: '2.5rem',
-    roundedCard: '0',
+    round: rhythm.r050,
+    roundedCard: rhythm.r150,
     /* Icon in button defaut size */
     /* text shadow default fallback for tex over images */
     textShadow: `0 .1rem .3rem ${boxShadowOpacity.boxShadowOpacity025}`,
