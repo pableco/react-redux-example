@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { connect } from "react-redux";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useHistory } from 'react-router-dom';
 
 import { deleteItem } from '../../redux/actions/apiActions';
@@ -13,7 +14,10 @@ const Item = ({data, deleteItem}) => {
     return (
         <ItemListStyles id={data.id}>
             <h4>{data.name}</h4>
-            <img alt={data.name} src={data.imageUrl} />
+            <LazyLoadImage
+                alt={data.name}
+                src={data.imageUrl}
+                />
             <KeypadStyles>
                 <Button.Invert onClick={() => handleOnClickEdit()}>
                     Edit
